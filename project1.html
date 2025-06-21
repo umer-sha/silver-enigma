@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Lessons</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: hsl(0, 0%, 95%);
+        }
+        h1{
+            color: hsl(223, 100%, 64%);
+        }
+        form{
+            background-color: hsl(0, 0%, 100%);
+            text-align: center;
+            max-width: 350px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 20px hsla(0, 0%, 0%, 0.5);
+        }
+        #textbox{
+            width: 50%;
+            text-align: center;
+            font-size: 2em;
+            border: 2px solid hsla(0, 0%, 0%, 0.8);
+            border-radius: 4px;
+            margin: 15px;
+        }
+        label{
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        button{
+            margin-top: 15px;
+            background-color: hsl(0,100%,60%);
+            color: white;
+            font-size: 1.5em;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: hsl(0,100%,50%);
+        }
+        #result{
+            font-size: 1.75em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h1>Temperature Conversion</h1>
+        <input type="number" id="textbox" value="0"><br/>
+        <input type="radio" id="radio1" name="unit">
+        <label for="radio1">Celsius ➡️ Fahrenheit</label>
+        <br>
+        <input type="radio" id="radio2" name="unit">
+        <label for="radio2">Fahrenheit ➡️ Celsius</label>
+        <br/>
+        <button type="button" onclick="convert()">Submit</button>
+        <p id="result">Select a unit</p>
+    </form>
+
+    <script>
+        
+        window.onload = function() {
+            const textbox = document.getElementById("textbox");
+            const radio1 = document.getElementById("radio1");
+            const radio2 = document.getElementById("radio2");
+            const result = document.getElementById("result");
+
+            function convert() {
+
+                console.log("Button clicked");
+                if (radio1.checked) {
+                    temp = Number(textbox.value);
+                    temp = temp * 9 / 5 + 32;
+                    result.textContent = temp.toFixed(1) + "°F";
+                } else if (radio2.checked) {
+                    temp = Number(textbox.value);
+                    temp = (temp - 32) * (5 / 9);
+                    result.textContent = temp.toFixed(1) + "°C";
+                } else {
+                    result.textContent = "Select a unit";
+                }
+            }
+  
+            const button = document.querySelector("button");
+            button.addEventListener("click", convert);
+        };
+    </script>
+</body>
+</html>

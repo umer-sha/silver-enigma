@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mybox{
+            background-color: lightgreen;
+            width: 300px;
+            height: 300px;
+            font-size: 4.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            
+
+        }
+    </style>
+   
+</head>
+<body>
+    <div id="mybox">
+        Click Me 😀
+    </div>
+    <script>
+     const mybox=document.getElementById("mybox");
+     
+     mybox.addEventListener("click", function changecolor(event){
+        event.target.style.backgroundColor="tomato";
+        event.target.textContent="OUCH! 🤕";
+      });
+      mybox.addEventListener("mouseover",event => {
+        event.target.style.backgroundColor="yellow";
+        event.target.textContent="Don't do it 😮";
+      });
+
+      mybox.addEventListener("mouseout",event => {
+        event.target.style.backgroundColor="lightgreen";
+        event.target.textContent="Click Me 😀";
+      });
+      
+    </script>
+</body>
+</html>

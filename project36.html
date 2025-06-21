@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+   
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+
+    <style>
+
+        .slider{
+
+            position: relative;
+
+            width: 100%;
+
+            margin: auto;
+
+            overflow: hidden;
+
+        }
+
+        .slider img{
+
+            width: 100%;
+
+            display: none;
+
+        }
+
+        img.displayslide{
+
+            display: block;
+
+            animation-name: fade;
+
+            animation-duration: 1.5s;
+
+        }
+
+        .slider button{
+
+            position: absolute;
+
+            top: 50%;
+
+            transform: translatey(-50%);
+
+            font-size: 2rem;
+
+            padding: 10px 15px;
+
+            background-color: hsla(0, 0%, 0%, 0.5);
+
+            color: white;
+            
+            border: none;
+
+            cursor: pointer;
+
+            
+
+            
+
+        }
+
+        .prev{
+
+            left: 0;
+
+        }
+
+        .next{
+
+            right: 0;
+
+        }
+
+        @keyframes fade {
+
+            from{opacity: .5}
+
+            to {opacity: 1}
+
+        }
+
+    </style>
+
+</head>
+
+    <div class="slider">
+        
+        <div class="slides">
+            
+            <img class="slide" src="car1.png" alt="car image">
+            
+            <img class="slide" src="car2.png" alt="car image">
+            
+            <img class="slide" src="car3.png" alt="car image">
+        
+        </div>
+        
+        <button class="prev" onclick="prevslide()">❮</button>
+        
+        <button class="next" onclick="nextslide()">❯</button>
+   
+    </div>
+
+    <script>
+
+        const slides = document.querySelectorAll(".slides img");
+    
+        let slideIndex = 0;
+     
+        let interValid = null;
+
+        document.addEventListener("DOMContentLoaded", initializeslider);
+
+        function initializeslider(){
+
+            if(slides.length > 0){
+
+                slides[slideIndex].classList.add("displayslide");
+
+                interValid = setInterval(nextslide, 5000);
+        
+                console.log(interValid);
+
+            }
+
+        }
+
+        function showslide(index){
+
+            if(index >= slides.length){
+
+                slideIndex = 0;
+
+            }
+
+            else if(index < 0){
+
+                slideIndex = slides.length - 1;
+
+            }
+
+            else{
+
+                slideIndex = index;
+
+            }
+
+            slides.forEach(slide => {
+
+                slide.classList.remove("displayslide");
+
+            });
+
+            slides[slideIndex].classList.add("displayslide");
+
+        }
+
+        function prevslide(){
+
+            clearInterval(interValid)
+
+            slideIndex--;
+
+            showslide(slideIndex);
+
+        }
+
+        function nextslide(){
+
+            slideIndex++;
+
+            showslide(slideIndex);
+
+        }
+
+    </script>
+     
+</body> 
+
+</html>

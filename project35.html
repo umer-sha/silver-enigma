@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+    <style>
+
+        body{
+
+            font-family: Arial, sans-serif;
+
+            font-weight: bold;
+
+            margin: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+        h1{
+
+            font-size: 3.5rem;
+
+            color: hsl(0, 0%, 20%);
+
+        }
+
+        .choices{
+
+            margin-bottom: 30px;
+
+        }
+
+        .choices button{
+
+            font-size: 8rem;
+
+            min-width: 160px;
+
+            margin: 0 10px;
+
+            width:  200px;
+
+            height: 200px;
+
+            border-radius: 50%;
+
+            background-color: hsl(190, 100%, 70%);
+
+            cursor: pointer;
+
+            transition: background-color 0.5 ease;
+
+        }
+
+        .choices button:hover{
+            
+            background-color: hsl(190, 100%, 45%);
+
+        }
+
+        .choices button:active{
+
+            background-color: hsl(190, 100%, 40%);
+
+        }
+
+        #playerDisplay,#computerDisplay{
+
+            font-size: 2.5rem;
+
+        }
+
+       
+
+        #resultDisplay{
+
+            font-size: 5rem;
+
+            margin: 30px 0;
+
+        }
+
+        .greentext{
+
+            color: hsl(130, 84%, 40%);
+
+        }
+
+        .redtext{
+
+            color: hsl(0, 84%, 60%);
+
+        }
+
+        .yellowtext{
+
+            color: hsl(60, 100%, 40%);
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Rock - Paper - Scissor</h1>
+
+    <div class="choices">
+
+        <button onclick="playgame('rock')">👊</button>
+
+        <button onclick="playgame('paper')">✋</button>
+
+        <button onclick="playgame('scissors')">✌️</button>
+
+    </div>
+
+   <div id="playerDisplay">PLAYER: </div>
+
+   <div id="computerDisplay">COMPUTER: </div>
+
+   <div id="resultDisplay"> </div>
+
+    <script>
+
+        const choices = ["rock", "paper", "scissors"];
+
+        const playerDisplay=document.getElementById("playerDisplay");
+
+        const computerDisplay=document.getElementById("computerDisplay");
+
+        const resultDisplay=document.getElementById("resultDisplay");
+
+        function playgame(playerchoice){
+
+            const computerchoice = choices[Math.floor(Math.random()*3)];
+
+            let result= "";
+
+            if(playerchoice === computerchoice){
+
+                result="IT'S A TIE!"
+              
+        }
+
+     else{
+
+        switch(playerchoice){ 
+
+            case "rock":
+
+                result=(computerchoice === "scissors") ? "YOU WIN!" : "YOU LOSE!";
+
+                break;
+
+            case"paper":
+
+                result=(computerchoice === "rock") ? "YOU WIN!" : "YOU LOSE!";
+
+                break;
+
+            case "scissors":
+
+                result=(computerchoice === "paper") ? "YOU WIN!" : "YOU LOSE!";
+
+                break;
+
+        }
+
+    }
+
+    playerDisplay.textContent=`PLAYER: ${playerchoice}`;
+
+    computerDisplay.textContent=`COMPUTER: ${computerchoice}`;
+    resultDisplay.classList.remove("greentext", "redtext", "yellowtext");
+    resultDisplay.textContent = result;
+
+        
+    switch(result){
+
+    case "YOU WIN!":
+        resultDisplay.classList.add("greentext");
+        break;
+
+    case "YOU LOSE!":
+        resultDisplay.classList.add("redtext");
+        break;
+
+    case "IT'S A TIE!":
+        resultDisplay.classList.add("yellowtext");
+        break;
+
+}
+
+}
+
+    </script>
+
+</body>
+
+</html>

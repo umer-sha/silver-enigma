@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+   <script>
+      function generatepassword(length,includelowercase,includeuppercase,includenumbers,includesymbols){
+           const lowercasechars="abcdefghijklmnopqrstuvwxyz";
+           const uppercasechars="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+           const numberchars="0123456789";
+           const symbolchars=".";
+           let allowedchars="";
+           let password="";  
+           allowedchars +=includelowercase ? lowercasechars:"";
+           allowedchars +=includeuppercase ? uppercasechars:"";
+           allowedchars +=includenumbers ? numberchars:"";
+           allowedchars +=includesymbols ? symbolchars:"";
+           if(length<=0){
+              return "(password length must be at least 1)";
+           }
+           if(allowedchars.length === 0){
+              return "(at least 1 set of characters has to be selected)";
+           }
+           for(let i=0;i<length; i++){
+              const randomindex=Math.floor(Math.random()*allowedchars.length);
+              password+=allowedchars[randomindex];
+           }
+           return password;
+      }
+       
+      const passwordlength=12;
+      const includelowercase=true;
+      const includeuppercase=true;
+      const includenumbers=true;
+      const includesymbols=true;
+      const password=generatepassword(passwordlength,
+                                      includelowercase,
+                                      includeuppercase,
+                                      includenumbers,
+                                      includesymbols);
+      console.log(`generated password: ${password}`);
+          </script>
+</body>
+</html>
